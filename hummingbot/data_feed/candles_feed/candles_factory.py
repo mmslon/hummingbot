@@ -6,6 +6,7 @@ from hummingbot.data_feed.candles_feed.binance_spot_candles import BinanceSpotCa
 from hummingbot.data_feed.candles_feed.bitmart_perpetual_candles.bitmart_perpetual_candles import (
     BitmartPerpetualCandles,
 )
+from hummingbot.data_feed.candles_feed.bitmart_spot_candles.bitmart_spot_candles import BitmartSpotCandles
 from hummingbot.data_feed.candles_feed.btc_markets_spot_candles.btc_markets_spot_candles import BtcMarketsSpotCandles
 from hummingbot.data_feed.candles_feed.bybit_perpetual_candles.bybit_perpetual_candles import BybitPerpetualCandles
 from hummingbot.data_feed.candles_feed.bybit_spot_candles.bybit_spot_candles import BybitSpotCandles
@@ -61,6 +62,7 @@ class CandlesFactory:
         "hyperliquid": HyperliquidSpotCandles,
         "hyperliquid_perpetual": HyperliquidPerpetualCandles,
         "dexalot": DexalotSpotCandles,
+        "bitmart": BitmartSpotCandles,
         "bitmart_perpetual": BitmartPerpetualCandles,
         "btc_markets": BtcMarketsSpotCandles,
     }
