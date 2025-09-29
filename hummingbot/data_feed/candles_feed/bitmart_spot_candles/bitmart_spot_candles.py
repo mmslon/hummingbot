@@ -111,10 +111,10 @@ class BitmartSpotCandles(CandlesBase):
         return params
 
     def _parse_rest_candles(self, data: dict, end_time: Optional[int] = None) -> List[List[float]]:
-        if data is not None and data.get("result") is not None:
-            candles = data.get("result").get("list")
+        if data is not None and data.get("data") is not None:
+            candles = data.get("data")
             if len(candles) > 0:
-                return [
+                res = [
                     [
                         self.ensure_timestamp_in_seconds(row[0]),
                         row[1],
@@ -129,6 +129,7 @@ class BitmartSpotCandles(CandlesBase):
                     ]
                     for row in candles
                 ]
+                return res
         return []
 
     def ws_subscription_payload(self):
