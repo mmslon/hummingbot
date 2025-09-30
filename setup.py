@@ -33,7 +33,7 @@ class BuildExt(build_ext):
 
 def main():
     cpu_count = os.cpu_count() or 8
-    version = "20250928"
+    version = "20250929"
     all_packages = find_packages(
         include=["hummingbot", "hummingbot.*"],
     )
@@ -47,7 +47,7 @@ def main():
     }
     install_requires = [
         "aiohttp>=3.8.5",
-        "asyncssh>=2.13.2",
+        "asyncssh>=2.21.0",
         "aioprocessing>=2.0.1",
         "aioresponses>=0.7.4",
         "aiounittest>=1.4.2",
@@ -115,7 +115,7 @@ def main():
         sys.argv.append(f"--parallel={cpu_count}")
 
     setup(
-        name="mmslon",
+        name="hummingbot",
         version=version,
         description="MMSLON",
         url="https://github.com/mmslon/hummingbot",

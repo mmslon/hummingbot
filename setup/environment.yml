@@ -18,7 +18,7 @@ dependencies:
   - setuptools==80.8.0
   ### Packages used within HB and helping reduce the footprint of pip-installed packages
   - aiohttp>=3.8.5
-  - asyncssh>=2.13.2
+  - asyncssh>=2.21.0
   - aioprocessing>=2.0.1
   - aioresponses>=0.7.4
   - aiounittest>=1.4.2
