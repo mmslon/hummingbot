@@ -33,7 +33,7 @@ class BuildExt(build_ext):
 
 def main():
     cpu_count = os.cpu_count() or 8
-    version = "20250923"
+    version = "20250929"
     all_packages = find_packages(
         include=["hummingbot", "hummingbot.*"],
     )
@@ -117,10 +117,10 @@ def main():
     setup(
         name="hummingbot",
         version=version,
-        description="Hummingbot",
-        url="https://github.com/hummingbot/hummingbot",
-        author="Hummingbot Foundation",
-        author_email="dev@hummingbot.org",
+        description="MMSLON",
+        url="https://github.com/mmslon/hummingbot",
+        author="MMSLON",
+        author_email="dev@mmslon.com",
         license="Apache 2.0",
         packages=packages,
         package_data=package_data,
