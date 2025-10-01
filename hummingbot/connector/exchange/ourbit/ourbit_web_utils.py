@@ -1,4 +1,3 @@
-import ssl
 from typing import Callable, Optional
 
 import aiohttp
@@ -60,21 +59,31 @@ def wss_url(path_url: str, domain: str = CONSTANTS.DEFAULT_DOMAIN) -> str:
 
 
 class OurbitConnectionsFactory(ConnectionsFactory):
-    """Custom ConnectionsFactory that handles SSL verification issues"""
+    """Custom ConnectionsFactory that handles SSL verification issues for Ourbit API"""
+
+    # Override class variables to avoid singleton conflicts
+    _instance = None
+    _ws_independent_session = None
+    _shared_client = None
+
+    def __new__(cls):
+        # Create a new instance each time (override singleton behavior)
+        # This is necessary to avoid conflicts with other exchange connectors
+        instance = object.__new__(cls)
+        return instance
 
     def __init__(self):
-        super().__init__()
-        # Create SSL context that can handle certificate verification issues
-        self._ssl_context = ssl.create_default_context()
-        self._ssl_context.check_hostname = False
-        self._ssl_context.verify_mode = ssl.CERT_NONE
+        # Don't call super().__init__() to avoid singleton behavior
+        pass
 
     async def _get_shared_client(self) -> aiohttp.ClientSession:
         """
-        Lazily create a shared aiohttp.ClientSession with SSL handling.
+        Lazily create a shared aiohttp.ClientSession with SSL disabled.
+        This is required for Ourbit API due to certificate verification issues.
         """
         if self._shared_client is None:
-            connector = aiohttp.TCPConnector(ssl=self._ssl_context)
+            # Disable SSL verification for Ourbit API
+            connector = aiohttp.TCPConnector(verify_ssl=False)
             self._shared_client = aiohttp.ClientSession(connector=connector)
         return self._shared_client
 
