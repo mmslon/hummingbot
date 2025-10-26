@@ -191,9 +191,9 @@ class BitmartExchange(ExchangePyBase):
                       "side": trade_type.name.lower(),
                       "type": order_type.name.lower(),
                       "size": f"{amount:f}",
-                      "price": f"{price:f}",
+                      "price": f"{price:f}" if order_type is not OrderType.MARKET else None,
                       "client_order_id": order_id,
-                      "notional": f"{notionalValue:f}",
+                      "notional": f"{notionalValue:f}" if order_type is not OrderType.MARKET else None,
                       }
         order_result = await self._api_post(
             path_url=CONSTANTS.CREATE_ORDER_PATH_URL,
